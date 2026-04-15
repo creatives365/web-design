@@ -1,0 +1,435 @@
+/* ════════════════════════════════════════
+   HUB365 EMAIL — namespace .h365-email
+   Todos los estilos viven SOLO dentro de
+   este wrapper para no contaminar la web
+════════════════════════════════════════ */
+ 
+/* Keyframes — nombres únicos con prefijo h365 */
+@keyframes h365-fadeUp {
+  from { opacity:0; transform:translateY(22px); }
+  to   { opacity:1; transform:translateY(0);    }
+}
+@keyframes h365-gradShift {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes h365-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes h365-pulseCta {
+  0%,100% { box-shadow: 0 0 0 0    rgba(191,90,242,.6); }
+  50%      { box-shadow: 0 0 0 12px rgba(191,90,242,0);  }
+}
+@keyframes h365-borderGlow {
+  0%,100% { border-color:rgba(191,90,242,.32); box-shadow:0 0 10px rgba(191,90,242,.08); }
+  50%      { border-color:rgba(255,0,246,.65);  box-shadow:0 0 26px rgba(255,0,246,.22);  }
+}
+@keyframes h365-dotPulse {
+  0%,100% { opacity:1;  transform:scale(1);   }
+  50%      { opacity:.4; transform:scale(.65); }
+}
+@keyframes h365-neonFlicker {
+  0%,95%,100% { opacity:1;  }
+  96%,98%     { opacity:.7; }
+  97%,99%     { opacity:1;  }
+}
+@keyframes h365-ringFill {
+  from { stroke-dashoffset: 220; }
+  to   { stroke-dashoffset: var(--ring-offset); }
+}
+@keyframes h365-hbarIn {
+  from { width: 0%; }
+  to   { width: var(--bar-w); }
+}
+ 
+/* ── SHELL ── */
+.h365-email {
+  /* Variables scoped al namespace */
+  --h-black:        #060010;
+  --h-deep:         #0c001e;
+  --h-surface:      #130028;
+  --h-white:        #fdfdfd;
+  --h-purple:       #bf5af2;
+  --h-purple-dim:   #9333ea;
+  --h-purple-light: #d68fff;
+  --h-fuchsia:      #ff00f6;
+  --h-neon:         #ccff00;
+  --h-border:       rgba(191,90,242,.18);
+  --h-w60:          rgba(255,255,255,.82);
+  --h-w40:          rgba(255,255,255,.62);
+  --h-w25:          rgba(255,255,255,.48);
+  --h-w06:          rgba(255,255,255,.06);
+  --h-p10:          color-mix(in srgb,#bf5af2 10%,transparent);
+  --h-p18:          color-mix(in srgb,#bf5af2 18%,transparent);
+  --h-f10:          color-mix(in srgb,#ff00f6 10%,transparent);
+  --h-n10:          color-mix(in srgb,#ccff00 10%,transparent);
+  --h-grad:         linear-gradient(120deg,#a825ff 0%,#ff00f6 50%,#ec935c 100%);
+  --h-grad-purple:  linear-gradient(135deg,#3b0080 0%,#bf5af2 100%);
+  --h-font:         'Montserrat', sans-serif;
+  --h-r-sm:  6px; --h-r-md: 10px; --h-r-lg: 14px; --h-r-xl: 18px; --h-pill: 999px;
+ 
+  /* Reset solo dentro del wrapper */
+  box-sizing: border-box;
+  max-width: 620px;
+  margin: 0 auto;
+  background: var(--h-deep);
+  border: 1px solid var(--h-border);
+  border-radius: var(--h-r-xl);
+  overflow: hidden;
+  font-family: var(--h-font);
+  color: var(--h-white);
+  animation: h365-fadeUp .65s ease both;
+}
+.h365-email *, .h365-email *::before, .h365-email *::after {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+}
+ 
+/* ── BARRA SHIMMER ── */
+.h365-email .em-accent {
+  height: 3px;
+  background: linear-gradient(90deg,#a825ff,#ff00f6,#ccff00,#ff00f6,#a825ff);
+  background-size: 300% 100%;
+  animation: h365-shimmer 3.5s linear infinite;
+}
+ 
+/* ── BODY ── */
+.h365-email .em-bd {
+  padding: 36px;
+  animation: h365-fadeUp .6s .16s ease both;
+}
+ 
+/* Badge */
+.h365-email .em-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--h-p10);
+  border: 1px solid rgba(191,90,242,.28);
+  border-radius: var(--h-pill);
+  padding: 4px 13px;
+  font-size: 9px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--h-purple-light);
+}
+.h365-email .em-badge .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--h-purple);
+  animation: h365-dotPulse 1.7s ease-in-out infinite;
+}
+ 
+/* Saludo */
+.h365-email .em-greeting {
+  font-size: 14.5px; font-weight: 500;
+  color: var(--h-w60); line-height: 1.6;
+  margin-bottom: 22px;
+}
+.h365-email .em-greeting strong { color: var(--h-white); font-weight: 700; }
+ 
+/* Eyebrow */
+.h365-email .em-eyebrow {
+  display: block;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--h-fuchsia);
+  margin-bottom: 6px;
+  animation: h365-neonFlicker 8s ease-in-out infinite;
+}
+ 
+/* Título principal */
+.h365-email .em-title-main {
+  font-size: clamp(1.5rem,4vw,2rem);
+  font-weight: 900; line-height: 1.12;
+  letter-spacing: -.025em;
+  background: var(--h-grad);
+  background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: h365-gradShift 7s ease infinite;
+  margin-bottom: 10px;
+}
+.h365-email .em-title-main .em-emoji,
+.h365-email .em-title-feat .em-emoji,
+.h365-email .em-title-sec  .em-emoji {
+  -webkit-text-fill-color: initial;
+  background: none; background-clip: initial;
+  -webkit-background-clip: initial; animation: none;
+  display: inline-block;
+}
+ 
+/* Título destacado */
+.h365-email .em-title-feat {
+  font-size: clamp(1.05rem,2.5vw,1.35rem);
+  font-weight: 800; line-height: 1.2; color: var(--h-white);
+  padding-left: 14px; border-left: 3px solid var(--h-purple);
+  margin-bottom: 16px; margin-top: 28px;
+}
+ 
+/* Título secundario */
+.h365-email .em-title-sec {
+  font-size: .95rem; font-weight: 700; color: var(--h-purple-light);
+  display: flex; align-items: center; gap: 9px;
+  margin-bottom: 13px; margin-top: 26px;
+}
+.h365-email .em-title-sec::before {
+  content: ''; width: 14px; height: 2px;
+  background: var(--h-purple); flex-shrink: 0;
+}
+ 
+/* Párrafo */
+.h365-email .em-p {
+  font-size: 13.5px; font-weight: 400;
+  color: var(--h-w60); line-height: 1.9; margin-bottom: 16px;
+}
+.h365-email .em-p strong { color: var(--h-white); font-weight: 700; }
+.h365-email .em-p a { color: var(--h-purple-light); text-decoration: underline; text-underline-offset: 3px; }
+ 
+/* Divider */
+.h365-email .em-div { height: 1px; background: var(--h-border); margin: 26px 0; }
+ 
+/* Stats */
+.h365-email .em-stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 10px; margin-bottom: 22px;
+}
+.h365-email .em-stat {
+  background: var(--h-surface); border: 1px solid var(--h-border);
+  border-radius: var(--h-r-md); padding: 14px 10px; text-align: center;
+}
+.h365-email .em-stat .sv {
+  display: block; font-size: 1.55rem; font-weight: 900;
+  background: var(--h-grad); background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: h365-gradShift 6s ease infinite;
+  line-height: 1; margin-bottom: 4px;
+}
+.h365-email .em-stat .sl {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--h-w40);
+}
+ 
+/* Callout */
+.h365-email .em-callout {
+  padding: 18px 20px; background: var(--h-p10);
+  border: 1px solid rgba(191,90,242,.32);
+  border-radius: var(--h-r-md); margin-bottom: 18px;
+  animation: h365-borderGlow 3.2s ease-in-out infinite;
+}
+.h365-email .em-callout.neon  { background: var(--h-n10); border-color: rgba(204,255,0,.32); animation: none; }
+.h365-email .em-callout.fuchsia { background: var(--h-f10); border-color: rgba(255,0,246,.32); animation: none; }
+.h365-email .em-callout-ic { font-size: 20px; display: block; margin-bottom: 7px; }
+.h365-email .em-callout-ttl {
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--h-purple-light); margin-bottom: 6px;
+}
+.h365-email .em-callout.neon    .em-callout-ttl { color: var(--h-neon); }
+.h365-email .em-callout.fuchsia .em-callout-ttl { color: var(--h-fuchsia); }
+.h365-email .em-callout p { font-size: 13px; color: var(--h-w60); line-height: 1.78; margin: 0; }
+.h365-email .em-callout p strong { color: var(--h-white); }
+ 
+/* Lista dot */
+.h365-email .em-list {
+  list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 20px;
+}
+.h365-email .em-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 13px; color: var(--h-w60); line-height: 1.75;
+  padding: 10px 14px; background: var(--h-w06);
+  border: 1px solid rgba(255,255,255,.06); border-radius: var(--h-r-sm);
+}
+.h365-email .em-list li .dot {
+  width: 6px; height: 6px; min-width: 6px; border-radius: 50%;
+  background: var(--h-neon); box-shadow: 0 0 6px rgba(204,255,0,.5);
+  margin-top: 7px; flex-shrink: 0;
+}
+.h365-email .em-list li strong { color: var(--h-white); }
+ 
+/* Lista numerada */
+.h365-email .em-list-n {
+  list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;
+}
+.h365-email .em-list-n li {
+  display: flex; align-items: flex-start; gap: 13px;
+  font-size: 13px; color: var(--h-w60); line-height: 1.75;
+}
+.h365-email .em-list-n li .n {
+  min-width: 26px; height: 26px; border-radius: 50%;
+  background: var(--h-grad-purple);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; color: #fff;
+  flex-shrink: 0; margin-top: 1px;
+}
+ 
+/* Card */
+.h365-email .em-card {
+  background: var(--h-surface); border: 1px solid var(--h-border);
+  border-radius: var(--h-r-lg); padding: 22px;
+  margin-bottom: 18px; position: relative; overflow: hidden;
+}
+.h365-email .em-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--h-grad);
+}
+.h365-email .em-card-lbl {
+  display: block; font-size: 9.5px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--h-purple); margin-bottom: 9px;
+}
+.h365-email .em-card h3 {
+  font-size: 1.05rem; font-weight: 800; color: var(--h-white);
+  line-height: 1.25; margin-bottom: 8px;
+}
+.h365-email .em-card p { font-size: 12.5px; color: var(--h-w40); line-height: 1.78; margin: 0; }
+ 
+/* Firma */
+.h365-email .em-sig {
+  padding: 22px 0 4px; font-size: 13px; color: var(--h-w60); line-height: 2;
+}
+.h365-email .em-sig strong { color: var(--h-white); }
+.h365-email .em-sig .tagline {
+  display: block; margin-top: 4px;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.52);
+}
+ 
+/* CTA */
+.h365-email .em-cta-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 28px 0 6px;
+}
+.h365-email .em-btn {
+  display: inline-block; padding: 15px 38px;
+  background: var(--h-grad); color: #fff; font-family: var(--h-font);
+  font-size: 12.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+  text-decoration: none; border-radius: var(--h-r-md);
+  animation: h365-pulseCta 2.6s ease-in-out infinite;
+  transition: filter .2s, transform .2s;
+}
+.h365-email .em-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.h365-email .em-btn-ghost {
+  display: inline-block; padding: 12px 30px; background: transparent;
+  color: var(--h-purple-light); font-family: var(--h-font);
+  font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; border: 1.5px solid rgba(191,90,242,.45);
+  border-radius: var(--h-r-md); transition: border-color .2s, background .2s;
+}
+.h365-email .em-btn-ghost:hover { border-color: var(--h-purple); background: var(--h-p10); }
+.h365-email .em-btn-note {
+  font-size: 9.5px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: rgba(255,255,255,.48); text-align: center;
+}
+ 
+/* Comparación */
+.h365-email .em-compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;
+}
+.h365-email .em-compare-col {
+  border-radius: var(--h-r-lg); padding: 20px 18px; position: relative; overflow: hidden;
+}
+.h365-email .em-compare-col.old { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); }
+.h365-email .em-compare-col.new { background: var(--h-p18); border: 1px solid rgba(191,90,242,.45); }
+.h365-email .em-compare-col.new::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--h-grad);
+}
+.h365-email .em-compare-tag {
+  display: inline-block; font-size: 8.5px; font-weight: 800;
+  letter-spacing: .18em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: var(--h-pill); margin-bottom: 12px;
+}
+.h365-email .em-compare-col.old .em-compare-tag { background: rgba(255,255,255,.06); color: var(--h-w40); }
+.h365-email .em-compare-col.new .em-compare-tag { background: rgba(191,90,242,.2); color: var(--h-purple-light); }
+.h365-email .em-compare-col.new .em-compare-tag.winner {
+  background: color-mix(in srgb,#ccff00 15%,transparent); color: var(--h-neon);
+}
+.h365-email .em-compare-price {
+  font-size: 1.6rem; font-weight: 900; line-height: 1;
+  letter-spacing: -.03em; margin-bottom: 4px; display: block;
+}
+.h365-email .em-compare-col.old .em-compare-price { color: var(--h-w40); }
+.h365-email .em-compare-col.new .em-compare-price {
+  background: var(--h-grad); background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: h365-gradShift 5s ease infinite;
+}
+.h365-email .em-compare-sub {
+  font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--h-w25); margin-bottom: 14px; display: block;
+}
+.h365-email .em-compare-items { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.h365-email .em-compare-items li {
+  font-size: 11.5px; color: var(--h-w60); line-height: 1.5;
+  display: flex; align-items: flex-start; gap: 7px;
+}
+.h365-email .em-compare-col.old .em-compare-items li { color: var(--h-w40); }
+.h365-email .em-compare-items li .ci { font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+ 
+/* Rings circulares */
+.h365-email .em-rings {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px;
+}
+.h365-email .em-ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.h365-email .em-ring-svg { width: 80px; height: 80px; transform: rotate(-90deg); flex-shrink: 0; }
+.h365-email .em-ring-bg  { fill: none; stroke: rgba(255,255,255,.07); stroke-width: 6; stroke-linecap: round; }
+.h365-email .em-ring-fg  {
+  fill: none; stroke-width: 6; stroke-linecap: round;
+  stroke-dasharray: 220; stroke-dashoffset: 220;
+  animation: h365-ringFill 1.4s cubic-bezier(.4,0,.2,1) both;
+}
+.h365-email .em-ring-fg.purple  { stroke: url(#rg-purple); }
+.h365-email .em-ring-fg.neon    { stroke: #ccff00; filter: drop-shadow(0 0 4px rgba(204,255,0,.6)); }
+.h365-email .em-ring-fg.fuchsia { stroke: url(#rg-fuchsia); filter: drop-shadow(0 0 4px rgba(255,0,246,.5)); }
+.h365-email .em-ring-label { text-align: center; }
+.h365-email .em-ring-label .rv {
+  display: block; font-size: 1rem; font-weight: 900;
+  color: var(--h-white); letter-spacing: -.02em; line-height: 1;
+}
+.h365-email .em-ring-label .rl {
+  display: block; font-size: 9px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--h-w40); margin-top: 3px;
+}
+.h365-email .em-ring-center { position: relative; width: 80px; height: 80px; }
+.h365-email .em-ring-center svg { position: absolute; top:0; left:0; }
+.h365-email .em-ring-center .em-ring-num {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 900; color: var(--h-white); letter-spacing: -.03em;
+}
+.h365-email .em-ring-num.neon    { color: var(--h-neon);    text-shadow: 0 0 8px rgba(204,255,0,.5); }
+.h365-email .em-ring-num.fuchsia { color: var(--h-fuchsia); text-shadow: 0 0 8px rgba(255,0,246,.4); }
+.h365-email .em-ring-num.purple  { color: var(--h-purple-light); }
+ 
+/* Barras horizontales */
+.h365-email .em-hbars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.h365-email .em-hbar-row {
+  display: grid; grid-template-columns: 110px 1fr 32px;
+  align-items: center; gap: 10px;
+}
+.h365-email .em-hbar-lbl {
+  font-size: 10.5px; font-weight: 700; color: var(--h-w60);
+  text-align: right; letter-spacing: .02em;
+}
+.h365-email .em-hbar-track {
+  height: 8px; background: rgba(255,255,255,.07);
+  border-radius: var(--h-pill); overflow: hidden;
+}
+.h365-email .em-hbar-fill {
+  height: 100%; border-radius: var(--h-pill);
+  width: 0%; animation: h365-hbarIn 1.2s cubic-bezier(.4,0,.2,1) both;
+}
+.h365-email .em-hbar-fill.purple  { background: linear-gradient(90deg,#7b2fff,#bf5af2); }
+.h365-email .em-hbar-fill.neon    { background: linear-gradient(90deg,#a8e063,#ccff00); box-shadow: 0 0 8px rgba(204,255,0,.4); }
+.h365-email .em-hbar-fill.fuchsia { background: linear-gradient(90deg,#a825ff,#ff00f6); box-shadow: 0 0 8px rgba(255,0,246,.35); }
+.h365-email .em-hbar-fill.grad    { background: var(--h-grad); }
+.h365-email .em-hbar-pct { font-size: 10px; font-weight: 800; color: var(--h-w40); text-align: left; }
+ 
+/* Responsive */
+@media (max-width: 540px) {
+  .h365-email .em-bd   { padding-left: 22px; padding-right: 22px; }
+  .h365-email .em-stats   { grid-template-columns: 1fr 1fr; }
+  .h365-email .em-compare { grid-template-columns: 1fr; }
+  .h365-email .em-rings   { gap: 6px; }
+  .h365-email .em-ring-center,
+  .h365-email .em-ring-svg { width: 64px; height: 64px; }
+  .h365-email .em-btn,
+  .h365-email .em-btn-ghost { padding-left: 24px; padding-right: 24px; }
+  .h365-email .em-hbar-row { grid-template-columns: 80px 1fr 28px; }
+}
